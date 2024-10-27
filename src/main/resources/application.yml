@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: API-GATEWAY-MSVC
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: cart_route
+          uri: lb://CART-MSVC
+          predicates:
+            - Path=/api/cart/**
+
+        - id: event_route
+          uri: lb://Event-Msvc
+          predicates:
+            - Path=/api/event/**
+
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8080

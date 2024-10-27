@@ -1,0 +1,19 @@
+spring.application.name=API-GATEWAY-MSVC
+
+server.port=8080
+
+# Eureka configuration
+eureka.instance.prefer-ip-address=true
+eureka.client.fetch-registry=true
+eureka.client.register-with-eureka=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+#spring.cloud.discovery.enabled=true
+
+# Gateway routes configuration
+spring.cloud.gateway.routes[1].id=CART-MSVC
+spring.cloud.gateway.routes[1].uri=http://localhost:8081
+spring.cloud.gateway.routes[1].predicates[0]=Path=/api/cart/**
+
+logging.level.org.springframework.cloud.gateway=DEBUG
+debug=true
+
